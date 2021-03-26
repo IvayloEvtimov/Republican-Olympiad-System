@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2021 at 10:26 PM
+-- Generation Time: Mar 26, 2021 at 10:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -67,7 +67,8 @@ CREATE TABLE `olympiad` (
 INSERT INTO `olympiad` (`short_name`, `name`, `host`, `date`, `url`) VALUES
 ('3 МТП', '3-ти Междууниверситетски турнир по програмиране', 'АУБ', '2000-06-01', 'https://infoman.musala.com/contests/139/1145/'),
 ('4 МТП', '4-ти Междууниверситетски турнир по програмиране', 'НБУ', '2001-01-01', ''),
-('5 МТП', '5-ти Междууниверситетски турнир по програмиране', 'БСУ', '2002-05-19', 'http://nikolay.kirov.be/2002/5cp/cp.html');
+('5 МТП', '5-ти Междууниверситетски турнир по програмиране', 'БСУ', '2002-05-19', 'http://nikolay.kirov.be/2002/5cp/cp.html'),
+('6 МТП', '6-ти Междууниверситетски турнир по програмиране', 'ШУ', '2003-05-10', 'https://infoman.musala.com/contests/138/476/');
 
 -- --------------------------------------------------------
 
@@ -288,7 +289,24 @@ INSERT INTO `submission` (`olympiad`, `team`, `completed_tasks`, `time_taken`) V
 ('5 МТП', '17 ЮЗУ-2', 1, 216),
 ('5 МТП', '18 ПУ-1', 3, 411),
 ('5 МТП', '19 ПУ-2', 2, 157),
-('5 МТП', '20 ТУГ', 3, 490);
+('5 МТП', '20 ТУГ', 3, 490),
+('6 МТП', '1 Shumen University Team-1', 2, 123),
+('6 МТП', '10 Technical University of Gabrovo', 0, 0),
+('6 МТП', '11 Plovdiv University Team-1', 3, 386),
+('6 МТП', '12 New Bulgarian University', 1, 62),
+('6 МТП', '13 Sofia University Team-2', 7, 1088),
+('6 МТП', '14 Shumen University Team-2', 3, 324),
+('6 МТП', '15 American University in Bulgaria', 5, 809),
+('6 МТП', '16 Sofia University Team-3', 5, 339),
+('6 МТП', '17 South-West University Blagoevgrad Team-1', 2, 603),
+('6 МТП', '2 Sofia University Team-1', 7, 773),
+('6 МТП', '3 Plovdiv University Team-2', 3, 522),
+('6 МТП', '4 Varna Free University', 0, 0),
+('6 МТП', '5 Shumen University Team-3', 0, 0),
+('6 МТП', '6 Varna Economic University', 3, 460),
+('6 МТП', '7 Rousse University', 1, 316),
+('6 МТП', '8 South-West University Blagoevgrad Team-2', 0, 0),
+('6 МТП', '9 Sofia University Team-4', 6, 809);
 
 -- --------------------------------------------------------
 
@@ -313,7 +331,8 @@ INSERT INTO `task` (`olympiad`, `task_file`) VALUES
 ('5 МТП', 'pic'),
 ('5 МТП', 'points'),
 ('5 МТП', 'prime'),
-('5 МТП', 'shsh');
+('5 МТП', 'shsh'),
+('6 МТП', 'problems');
 
 -- --------------------------------------------------------
 
@@ -341,17 +360,34 @@ INSERT INTO `team` (`name`, `university`, `email`) VALUES
 ('07 СУ-4', 'СУ', ''),
 ('08 НБУ-1', 'НБУ', ''),
 ('09 НБУ-2', 'НБУ', 'lasko@abv.bg'),
+('1 Shumen University Team-1', 'ШУ', ''),
+('10 Technical University of Gabrovo', 'ТУГ', ''),
 ('10 АУБ', 'АУБ', 'SVS000@aubg.bg'),
+('11 Plovdiv University Team-1', 'ПУ', ''),
 ('11 ШУ-1', 'ШУ', 'ekp29@hotmail.com'),
+('12 New Bulgarian University', 'НБУ', ''),
 ('12 ШУ-2', 'ШУ', ''),
+('13 Sofia University Team-2', 'СУ', ''),
 ('13 ВТУ', 'ВТУ', 'nopcp@yahoo.com'),
+('14 Shumen University Team-2', 'ШУ', ''),
 ('14 ИУВ-1', 'ИУВ', 'chapa@abv.bg'),
+('15 American University in Bulgaria', 'АУБ', ''),
 ('15 ИУВ-2', 'ИУВ', 'starrboy_1999@yahoo.com'),
+('16 Sofia University Team-3', 'СУ', ''),
 ('16 ЮЗУ-1', 'ЮЗУ', 'stp_bg@abv.bg'),
+('17 South-West University Blagoevgrad Team-1', 'ЮЗУ', ''),
 ('17 ЮЗУ-2', 'ЮЗУ', 'isg@mail.bulgaria.com'),
 ('18 ПУ-1', 'ПУ', 'moni@kodar.net'),
 ('19 ПУ-2', 'ПУ', 'ptj_96640@yahoo.com'),
-('20 ТУГ', 'ПУ', '');
+('2 Sofia University Team-1', 'СУ', ''),
+('20 ТУГ', 'ПУ', ''),
+('3 Plovdiv University Team-2', 'ПУ', ''),
+('4 Varna Free University', 'ВСУ', ''),
+('5 Shumen University Team-3', 'ШУ', ''),
+('6 Varna Economic University', 'ИУВ', ''),
+('7 Rousse University', 'РУ', ''),
+('8 South-West University Blagoevgrad Team-2', 'ЮЗУ', ''),
+('9 Sofia University Team-4', 'СУ', '');
 
 -- --------------------------------------------------------
 
