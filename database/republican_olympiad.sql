@@ -507,32 +507,6 @@ INSERT INTO `submission` (`olympiad`, `team`, `completed_tasks`, `time_taken`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `task`
---
-
-CREATE TABLE `task` (
-  `olympiad` varchar(255) NOT NULL,
-  `task_file` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `task`
---
-
-INSERT INTO `task` (`olympiad`, `task_file`) VALUES
-('5 МТП', 'happy'),
-('5 МТП', 'lines'),
-('5 МТП', 'pass'),
-('5 МТП', 'period'),
-('5 МТП', 'pic'),
-('5 МТП', 'points'),
-('5 МТП', 'prime'),
-('5 МТП', 'shsh'),
-('6 МТП', 'problems');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `team`
 --
 
@@ -767,12 +741,6 @@ ALTER TABLE `submission`
   ADD KEY `university` (`team`);
 
 --
--- Indexes for table `task`
---
-ALTER TABLE `task`
-  ADD PRIMARY KEY (`olympiad`,`task_file`) USING BTREE;
-
---
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
@@ -842,12 +810,6 @@ ALTER TABLE `participate`
 ALTER TABLE `submission`
   ADD CONSTRAINT `submission_ibfk_1` FOREIGN KEY (`olympiad`) REFERENCES `olympiad` (`short_name`),
   ADD CONSTRAINT `submission_ibfk_2` FOREIGN KEY (`team`) REFERENCES `team` (`name`);
-
---
--- Constraints for table `task`
---
-ALTER TABLE `task`
-  ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`olympiad`) REFERENCES `olympiad` (`short_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `team`
