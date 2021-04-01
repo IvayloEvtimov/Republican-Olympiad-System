@@ -10,8 +10,8 @@ use CodeIgniter\Database\Config;
 class Database extends Config
 {
 	/**
-     * The directory that holds the Migrations
-     * and Seeds directories.
+	 * The directory that holds the Migrations
+	 * and Seeds directories.
 	 *
 	 * @var string
 	 */
@@ -33,9 +33,9 @@ class Database extends Config
 	public $default = [
 		'DSN'      => '',
 		'hostname' => 'localhost',
-		'username' => $_ENV['USERNAME'],
-		'password' => $_ENV['PASSWORD'],
-		'database' => $_ENV['DATABASE'],
+		'username' => '',
+		'password' => '',
+		'database' => '',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
@@ -85,8 +85,7 @@ class Database extends Config
 		// Ensure that we always set the database group to 'tests' if
 		// we are currently running an automated test suite, so that
 		// we don't overwrite live data on accident.
-		if (ENVIRONMENT === 'testing')
-		{
+		if (ENVIRONMENT === 'testing') {
 			$this->defaultGroup = 'tests';
 		}
 	}
