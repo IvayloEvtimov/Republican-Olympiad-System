@@ -1,0 +1,3 @@
+RewriteEngine on
+
+RewriteRule ^$ %{REQUEST_URI}public/ [R]
