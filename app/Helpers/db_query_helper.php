@@ -79,6 +79,34 @@ function select_olymp_team($olympiad)
     return $arr;
 }
 
+function select_participating_members($olympiad, $team)
+{
+    $db = db_connect();
+
+    $pQuery = $db->prepare(function ($db) {
+        $sql = 'SELECT
+                    *
+                FROM
+                    participate
+                INNER JOIN person ON participate.member = person.pid
+                WHERE
+                    participate.olympiad = ? AND participate.team = ?';
+
+        return (new Query($db))->setQuery($sql);
+    });
+
+    $result = $pQuery->execute($olympiad, $team);
+
+    if ($pQuery->hasError()) {
+        throw new \CodeIgniter\Database\Exceptions\DatabaseException();
+    }
+
+    $arr = $result->getResultArray();
+    $db->close();
+
+    return $arr;
+}
+
 function select_ranking_olymp($olympiad)
 {
     $db = db_connect();
