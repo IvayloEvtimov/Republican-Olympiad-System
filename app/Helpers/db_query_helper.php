@@ -85,7 +85,7 @@ function select_participating_members($olympiad, $team)
 
     $pQuery = $db->prepare(function ($db) {
         $sql = 'SELECT
-                    *
+                    CONCAT(person.first_name, " ", person.last_name) as name
                 FROM
                     participate
                 INNER JOIN person ON participate.member = person.pid
@@ -113,7 +113,7 @@ function select_team_coaches($olympiad, $team)
 
     $pQuery = $db->prepare(function ($db) {
         $sql = 'SELECT
-                    person.first_name, person.last_name
+                    CONCAT( person.first_name, " ", person.last_name) AS NAME
                 FROM
                     team_olympiad_leader
                 INNER JOIN team ON team_olympiad_leader.university = team.university
