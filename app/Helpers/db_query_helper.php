@@ -150,34 +150,3 @@ function select_team_coaches($olympiad, $team)
 
     return $final_res;
 }
-
-function select_ranking_olymp($olympiad)
-{
-    $db = db_connect();
-
-    $pQuery = $db->prepare(function ($db) {
-        $sql = 'SELECT
-                    *
-                FROM
-                    submission
-                WHERE
-                    submission.olympiad = ?
-                ORDER BY
-                    submission.completed_tasks
-                DESC ,
-                    submission.time_taken
-                DESC';
-        return (new Query($db))->setQuery($sql);
-    });
-
-    $result = $pQuery->execute($olympiad);
-
-    if ($pQuery->hasError()) {
-        throw new \CodeIgniter\Database\Exceptions\DatabaseException();
-    }
-
-    $arr = $result->getResultArray();
-    $db->close();
-
-    return $arr;
-}
