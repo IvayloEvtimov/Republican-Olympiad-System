@@ -60,7 +60,7 @@ class Home extends BaseController
 
         $table = new \CodeIgniter\View\Table();
         $table->setTemplate($tableSettings);
-        $table->setHeading("Класирания", "№ на отбор", "Участници", "Ръководител");
+        $table->setHeading("Университет", "№ на отбор", "Участници", "Ръководител");
 
         $data = [
             'link' => $link,
