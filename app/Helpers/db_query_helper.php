@@ -24,22 +24,31 @@ function select_olympiads()
     return $arr;
 }
 
+function select_participating_unis($olympiad)
 {
-	$db = db_connect();
-	$query = $db->query('SELECT
-							*
-						FROM
-							university');
+    $db = db_connect();
 
-	if (!$db->error())
-	{
-		throw new \CodeIgniter\Database\Exceptions\DatabaseException();
-	}
+    $pQuery = $db->prepare(function ($db) {
+        $sql = 'SELECT
+                    COUNT(DISTINCT team.university) as uni_count
+                FROM
+                    submission
+                INNER JOIN team ON submission.team = team.name
+                WHERE
+                    submission.olympiad = ?';
+        return (new Query($db))->setQuery($sql);
+    });
 
-	$arr = $query->getResultArray();
-	$db->close();
+    $result = $pQuery->execute($olympiad);
 
-	return $arr;
+    if ($pQuery->hasError()) {
+        throw new \CodeIgniter\Database\Exceptions\DatabaseException();
+    }
+
+    $arr = $result->getResultArray();
+    $db->close();
+
+    return $arr[0]['uni_count'];
 }
 
 function select_one_uni($uni)
