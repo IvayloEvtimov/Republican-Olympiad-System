@@ -1,5 +1,5 @@
 body {
-    /* background-color: #fff; */
+    background-color: #fff;
 }
 
 .table {
@@ -10,8 +10,10 @@ body {
   }
   
   .table td, .table th {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 1px solid rgb(151, 151, 151);
+    padding: 10px;
+    padding-left: 12px;
+    line-height: 1.4;
   }
   
   .table tr:nth-child(even){background-color: #f2f2f2;}
