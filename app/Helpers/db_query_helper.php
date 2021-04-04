@@ -51,31 +51,32 @@ function select_participating_unis($olympiad)
     return $arr[0]['uni_count'];
 }
 
-function select_one_uni($uni)
+function select_olymp_team($olympiad)
 {
-	$db = db_connect();
+    $db = db_connect();
 
-	$pQuery = $db->prepare(function ($db)
-	{
-		$sql = 'SELECT
-					*
-				FROM
-					university
-				WHERE
-					short_form=?';
-		return (new Query($db))->setQuery($sql);
-	});
+    $pQuery = $db->prepare(function ($db) {
+        $sql = 'SELECT
+                    team.*
+                FROM
+                    team
+                INNER JOIN submission ON submission.team = team.name
+                WHERE
+                    submission.olympiad = ?';
 
-	$result = $pQuery->execute($uni);
+        return (new Query($db))->setQuery($sql);
+    });
 
-	if ($pQuery->hasError()) {
-		throw new \CodeIgniter\Database\Exceptions\DatabaseException();
-	}
+    $result = $pQuery->execute($olympiad);
 
-	$arr = $result->getResultArray();
-	$db->close();
+    if ($pQuery->hasError()) {
+        throw new \CodeIgniter\Database\Exceptions\DatabaseException();
+    }
 
-	return $arr;
+    $arr = $result->getResultArray();
+    $db->close();
+
+    return $arr;
 }
 
 function select_ranking_olymp($olympiad)
