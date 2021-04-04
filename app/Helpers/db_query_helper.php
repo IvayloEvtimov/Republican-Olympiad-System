@@ -57,12 +57,17 @@ function select_olymp_team($olympiad)
 
     $pQuery = $db->prepare(function ($db) {
         $sql = 'SELECT
-                    team.*
+                    team.*, submission.completed_tasks, submission.time_taken
                 FROM
                     team
                 INNER JOIN submission ON submission.team = team.name
                 WHERE
-                    submission.olympiad = ?';
+                    submission.olympiad = ?
+                ORDER BY
+                    submission.completed_tasks
+                DESC ,
+                    submission.time_taken
+                ASC';
 
         return (new Query($db))->setQuery($sql);
     });

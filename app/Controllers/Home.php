@@ -60,7 +60,7 @@ class Home extends BaseController
 
         $table = new \CodeIgniter\View\Table();
         $table->setTemplate($tableSettings);
-        $table->setHeading("Университет", "№ на отбор", "Участници", "Ръководител");
+        $table->setHeading("№ на отбор", "Университет", "Участници", "Ръководител", "Решени Задачи", "Време");
 
         $data = [
             'link' => $link,
@@ -68,12 +68,14 @@ class Home extends BaseController
         ];
 
         $teams = select_olymp_team($id);
+        $count = 1;
 
         foreach ($teams as $row) {
             $participants = ol(select_participating_members($id, $row['name']));
             $coaches = ol(select_team_coaches($id, $row['name']));
 
-            $table->addRow($row['university'], $row['name'], $participants, $coaches);
+            $table->addRow("$count. $row[name]", $row['university'], $participants, $coaches, $row['completed_tasks'], $row['time_taken']);
+            ++$count;
         }
 
         return view("olympiad", $data);
