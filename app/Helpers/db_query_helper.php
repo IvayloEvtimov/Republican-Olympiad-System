@@ -113,10 +113,11 @@ function select_team_coaches($olympiad, $team)
 
     $pQuery = $db->prepare(function ($db) {
         $sql = 'SELECT
-                    team_olympiad_leader.*
+                    person.first_name, person.last_name
                 FROM
                     team_olympiad_leader
                 INNER JOIN team ON team_olympiad_leader.university = team.university
+                INNER JOIN person ON team_olympiad_leader.leader = person.pid
                 WHERE
                     team_olympiad_leader.olympiad = ? AND team.name = ?';
 
