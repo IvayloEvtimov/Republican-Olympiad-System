@@ -104,7 +104,12 @@ function select_participating_members($olympiad, $team)
     $arr = $result->getResultArray();
     $db->close();
 
-    return $arr;
+    $final_res = array();
+    foreach ($arr as $row) {
+        array_push($final_res, $row['name']);
+    }
+
+    return $final_res;
 }
 
 function select_team_coaches($olympiad, $team)
@@ -113,7 +118,7 @@ function select_team_coaches($olympiad, $team)
 
     $pQuery = $db->prepare(function ($db) {
         $sql = 'SELECT
-                    CONCAT( person.first_name, " ", person.last_name) AS NAME
+                    CONCAT( person.first_name, " ", person.last_name) AS name
                 FROM
                     team_olympiad_leader
                 INNER JOIN team ON team_olympiad_leader.university = team.university
@@ -133,7 +138,12 @@ function select_team_coaches($olympiad, $team)
     $arr = $result->getResultArray();
     $db->close();
 
-    return $arr;
+    $final_res = array();
+    foreach ($arr as $row) {
+        array_push($final_res, $row['name']);
+    }
+
+    return $final_res;
 }
 
 function select_ranking_olymp($olympiad)
