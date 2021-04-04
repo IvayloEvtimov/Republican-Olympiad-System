@@ -4,7 +4,26 @@ namespace App\Helpers;
 
 use CodeIgniter\Database\Query;
 
-function select_unis()
+function select_olympiads()
+{
+    $db = db_connect();
+    $query = $db->query('SELECT
+                            olympiad.*,
+                            university.city
+                        FROM
+                            olympiad
+                        LEFT JOIN university ON olympiad.host = university.short_form');
+
+    if (!$db->error()) {
+        throw new \CodeIgniter\Database\Exceptions\DatabaseException();
+    }
+
+    $arr = $query->getResultArray();
+    $db->close();
+
+    return $arr;
+}
+
 {
 	$db = db_connect();
 	$query = $db->query('SELECT
