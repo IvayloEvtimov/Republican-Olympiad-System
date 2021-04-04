@@ -107,6 +107,34 @@ function select_participating_members($olympiad, $team)
     return $arr;
 }
 
+function select_team_coaches($olympiad, $team)
+{
+    $db = db_connect();
+
+    $pQuery = $db->prepare(function ($db) {
+        $sql = 'SELECT
+                    team_olympiad_leader.*
+                FROM
+                    team_olympiad_leader
+                INNER JOIN team ON team_olympiad_leader.university = team.university
+                WHERE
+                    team_olympiad_leader.olympiad = ? AND team.name = ?';
+
+        return (new Query($db))->setQuery($sql);
+    });
+
+    $result = $pQuery->execute($olympiad, $team);
+
+    if ($pQuery->hasError()) {
+        throw new \CodeIgniter\Database\Exceptions\DatabaseException();
+    }
+
+    $arr = $result->getResultArray();
+    $db->close();
+
+    return $arr;
+}
+
 function select_ranking_olymp($olympiad)
 {
     $db = db_connect();
