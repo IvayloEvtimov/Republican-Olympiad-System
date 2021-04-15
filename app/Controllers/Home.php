@@ -16,12 +16,15 @@ class Home extends BaseController
     public function index()
     {
         helper(['html', 'db_query_helper']);
-        $link = [
-            'href'  => 'public/css/styles.css',
-            'rel'   => 'stylesheet',
-            'type'  => 'text/css',
+
+        $link = ['href'  => 'public/css/styles.css'];
+
+        $gstatic_link = [
+            'href' => 'https://fonts.gstatic.com',
+            'rel' => 'preconnect',
         ];
 
+        $font_link = ['href' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'];
         $tableSettings = [
             'table_open' => '<table class="table center" >'
         ];
@@ -48,11 +51,14 @@ class Home extends BaseController
     public function olympiad($id)
     {
         helper(['html', 'db_query_helper']);
-        $link = [
-            'href'  => 'public/css/styles.css',
-            'rel'   => 'stylesheet',
-            'type'  => 'text/css',
+        $link = ['href'  => 'public/css/styles.css'];
+
+        $gstatic_link = [
+            'href' => 'https://fonts.gstatic.com',
+            'rel' => 'preconnect',
         ];
+
+        $font_link = ['href' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'];
 
         $tableSettings = [
             'table_open' => '<table class="table center" >'
