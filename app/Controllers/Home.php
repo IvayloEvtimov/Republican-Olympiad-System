@@ -13,7 +13,7 @@ use function App\Helpers\select_unis;
 
 class Home extends BaseController
 {
-    public function index()
+    public function index($olympiad = null)
     {
         helper(['html', 'db_query_helper']);
 
@@ -25,6 +25,15 @@ class Home extends BaseController
         ];
 
         $font_link = ['href' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'];
+
+        $header_string = "";
+        if ($olympiad != null) {
+            $base = base_url("public/olympiad/$olympiad");
+            $header_string = "<a href='$base'>Отбори</a>";
+        } else {
+            $header_string = "<a href=''>Олимпиади</a>";
+        }
+
         $tableSettings = [
             'table_open' => '<table class="table center" >'
         ];
@@ -48,9 +57,10 @@ class Home extends BaseController
             'gstatic_link' => $gstatic_link,
             'font_link' => $font_link,
             'table' => $table,
+            'olympiad' => $header_string,
         ];
 
-        return view("index", $data);
+        return view("index", $data, ['saveData' => true]);
     }
 
     public function olympiad($id)
@@ -75,7 +85,10 @@ class Home extends BaseController
 
         $data = [
             'link' => $link,
+            'gstatic_link' => $gstatic_link,
+            'font_link' => $font_link,
             'table' => $table,
+            'olympiad' => base_url("public/home/$id"),
         ];
 
         $teams = select_olymp_team($id);
@@ -89,6 +102,6 @@ class Home extends BaseController
             ++$count;
         }
 
-        return view("olympiad", $data);
+        return view("olympiad", $data, ['saveData' => true]);
     }
 }
