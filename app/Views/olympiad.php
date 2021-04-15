@@ -9,7 +9,14 @@
 
 
 <body>
-    <h2 class="center">Отбори</h2>
+    <header>
+        <nav class="text-center">
+            <ul>
+                <li><a href=<?= $olympiad ?>>Олимпиади</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="container">
         <?= $table->generate() ?>
     </div>
