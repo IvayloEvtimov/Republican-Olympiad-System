@@ -39,12 +39,14 @@ class Home extends BaseController
             preg_match("/\d{4}/", $row['date'], $year);
 
             $unis = select_participating_unis($row['short_name']);
-            $table->addRow("<a href='olympiad/$row[short_name]'>$row[short_name]</a>", $row['date'], $row['host'], $row['city'], $unis, "<a href='$row[url]'>$row[url]</a>");
-            $table->addRow("<a href='olympiad/$row[short_name]'>$row[short_name]</a>", $year[0], $row['host'], $row['city'], $unis, "<a href='$row[url]'>$row[url]</a>");
+            $base = base_url("public/olympiad/$row[short_name]");
+            $table->addRow("<a href='$base'>$row[short_name]</a>", $year[0], $row['host'], $row['city'], $unis, "<a href='$row[url]'>$row[url]</a>");
         }
 
         $data = [
             'link' => $link,
+            'gstatic_link' => $gstatic_link,
+            'font_link' => $font_link,
             'table' => $table,
         ];
 
