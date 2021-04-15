@@ -21,6 +21,9 @@
         <?= $table->generate() ?>
     </div>
 
+    <footer>
+        <p>Made by F86778 & F98223</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
