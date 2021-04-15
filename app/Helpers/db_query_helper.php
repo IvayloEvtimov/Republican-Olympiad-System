@@ -64,10 +64,8 @@ function select_olymp_team($olympiad)
                 WHERE
                     submission.olympiad = ?
                 ORDER BY
-                    submission.completed_tasks
-                DESC ,
-                    submission.time_taken
-                ASC';
+                    submission.completed_tasks DESC,
+                    submission.time_taken ASC';
 
         return (new Query($db))->setQuery($sql);
     });
