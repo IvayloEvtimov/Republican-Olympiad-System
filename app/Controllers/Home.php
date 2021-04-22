@@ -3,28 +3,29 @@
 namespace App\Controllers;
 
 use function App\Helpers\select_olymp_team;
-use function App\Helpers\select_olymp_team_participate;
 use function App\Helpers\select_olympiads;
 use function App\Helpers\select_participating_members;
 use function App\Helpers\select_participating_unis;
 use function App\Helpers\select_team_coaches;
-use function App\Helpers\select_team_participants;
-use function App\Helpers\select_unis;
 
 class Home extends BaseController
 {
+    const LINKS = array(
+        'style_link' => array(
+            'href' => 'public/css/styles.css'
+        ),
+        'gstatic_link' => array(
+            'href' => 'https://fonts.gstatic.com',
+            'rel' => 'preconnect'
+        ),
+        'font_link' => array(
+            'href' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'
+        )
+    );
+
     public function index($olympiad = null)
     {
         helper(['html', 'db_query_helper']);
-
-        $link = ['href'  => 'public/css/styles.css'];
-
-        $gstatic_link = [
-            'href' => 'https://fonts.gstatic.com',
-            'rel' => 'preconnect',
-        ];
-
-        $font_link = ['href' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'];
 
         $header_string = "";
         if ($olympiad != null) {
@@ -53,9 +54,9 @@ class Home extends BaseController
         }
 
         $data = [
-            'link' => $link,
-            'gstatic_link' => $gstatic_link,
-            'font_link' => $font_link,
+            'link' => Home::LINKS['style_link'],
+            'gstatic_link' => HOME::LINKS['gstatic_link'],
+            'font_link' => HOME::LINKS['font_link'],
             'table' => $table,
             'olympiad' => $header_string,
         ];
@@ -66,14 +67,6 @@ class Home extends BaseController
     public function olympiad($id)
     {
         helper(['html', 'db_query_helper']);
-        $link = ['href'  => 'public/css/styles.css'];
-
-        $gstatic_link = [
-            'href' => 'https://fonts.gstatic.com',
-            'rel' => 'preconnect',
-        ];
-
-        $font_link = ['href' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap'];
 
         $tableSettings = [
             'table_open' => '<table class="table center" >'
@@ -84,9 +77,9 @@ class Home extends BaseController
         $table->setHeading("№ на отбор", "Университет", "Участници", "Ръководител", "Решени Задачи", "Време");
 
         $data = [
-            'link' => $link,
-            'gstatic_link' => $gstatic_link,
-            'font_link' => $font_link,
+            'link' => Home::LINKS['style_link'],
+            'gstatic_link' => HOME::LINKS['gstatic_link'],
+            'font_link' => HOME::LINKS['font_link'],
             'table' => $table,
             'olympiad' => base_url("public/home/$id"),
         ];
