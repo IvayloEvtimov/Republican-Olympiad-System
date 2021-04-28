@@ -12,7 +12,7 @@ class Home extends BaseController
 {
     const LINKS = array(
         'style_link' => array(
-            'href' => 'public/css/styles.css'
+            'href' => 'app/Views/styles.css'
         ),
         'gstatic_link' => array(
             'href' => 'https://fonts.gstatic.com',
