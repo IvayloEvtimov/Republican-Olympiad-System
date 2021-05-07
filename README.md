@@ -13,7 +13,8 @@
 * Install PHP addons: `composer install`
 * Create database and user  
  ```shell
- mysql -u root -e "DROP DATABASE IF NOT EXISTS republican_olympiad;"
+ mysql -u root -e "DROP DATABASE IF EXISTS republican_olympiad;"
+ mysql -u root -e "CREATE DATABASE republican_olympiad;"
  mysql -u root -p republican_olympiad < $PATH_TO_PROJECT/database/republican_olympiad.sql
  mysql -u root -e "CREATE USER IF NOT EXISTS 'republican_olympiad'@'localhost' IDENTIFIED BY 'republican_olympiad';"
  mysql -e root -e "GRANT ALL PRIVILEGES ON 'republican_olympiad'.* TO 'republican_olympiad'@'localhost';"
