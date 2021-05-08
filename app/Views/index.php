@@ -7,13 +7,13 @@
 <?= link_tag($gstatic_link); ?>
 <?= link_tag($font_link); ?>
 
-<header>
+<!-- <header>
     <nav class="text-center">
         <ul>
             <li><?= $olympiad ?></li>
         </ul>
     </nav>
-</header>
+</header> -->
 
 <body>
     <div class="container">
