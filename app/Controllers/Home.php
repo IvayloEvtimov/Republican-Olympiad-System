@@ -76,14 +76,6 @@ class Home extends BaseController
         $table->setTemplate($tableSettings);
         $table->setHeading("№ на отбор", "Университет", "Участници", "Ръководител", "Решени Задачи", "Време");
 
-        $data = [
-            'link' => Home::LINKS['style_link'],
-            'gstatic_link' => HOME::LINKS['gstatic_link'],
-            'font_link' => HOME::LINKS['font_link'],
-            'table' => $table,
-            'olympiad' => base_url("public/home/$id"),
-        ];
-
         $teams = select_olymp_team($id);
         $count = 1;
 
@@ -94,6 +86,14 @@ class Home extends BaseController
             $table->addRow("$count. $row[name]", $row['university'], $participants, $coaches, $row['completed_tasks'], $row['time_taken']);
             ++$count;
         }
+
+        $data = [
+            'link' => Home::LINKS['style_link'],
+            'gstatic_link' => HOME::LINKS['gstatic_link'],
+            'font_link' => HOME::LINKS['font_link'],
+            'table' => $table,
+            'olympiad' => base_url("public/home/$id"),
+        ];
 
         return view("olympiad", $data, ['saveData' => true]);
     }
