@@ -19,6 +19,15 @@
 
     <div class="container">
         <?= $table->generate() ?>
+
+        <?php
+        print("<h3 class='text-center'>Задачи</h3>");
+        print("<ul class='text-center'");
+        for ($key = 2; $key < count($tasks); ++$key) {
+            print("<li><a href=$path_tasks[$key]>$tasks[$key]</a></li>");
+        }
+        print("</ul>");
+        ?>
     </div>
 
     <footer>
