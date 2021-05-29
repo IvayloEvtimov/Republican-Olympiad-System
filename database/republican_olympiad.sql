@@ -82,26 +82,9 @@ INSERT INTO `olympiad` (`short_name`, `name`, `host`, `date`, `url`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `olympiad_ranking`
---
 
-CREATE TABLE `olympiad_ranking` (
-  `olympiad` varchar(255) NOT NULL,
-  `university` varchar(255) NOT NULL,
-  `place` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `olympiad_ranking`
---
 
-INSERT INTO `olympiad_ranking` (`olympiad`, `university`, `place`) VALUES
-('3 МТП', 'АУБ', '3'),
-('3 МТП', 'ВТУ', '4'),
-('3 МТП', 'НБУ', '5'),
-('3 МТП', 'СУ', '1'),
-('3 МТП', 'ШУ', '6');
 
 -- --------------------------------------------------------
 
@@ -1310,6 +1293,11 @@ INSERT INTO `submission` (`olympiad`, `team`, `completed_tasks`, `time_taken`) V
 ('25 РСОП', 'VSU-1', 2, 123),
 ('25 РСОП', 'VSU-2', 1, 39),
 ('25 РСОП', 'VTU-1', 2, 252),
+('3 МТП', 'АУБ-1', 3, 0),
+('3 МТП', 'ВУ-1', 1, 0),
+('3 МТП', 'НБУ-1', 0, 0),
+('3 МТП', 'СУ-1', 5, 0),
+('3 МТП', 'ШУ-1', 0, 0),
 ('5 МТП', '01 БСУ-1', 3, 387),
 ('5 МТП', '02 БСУ-2', 1, 82),
 ('5 МТП', '03 БСУ-3', 1, 213),
@@ -1367,6 +1355,7 @@ INSERT INTO `submission` (`olympiad`, `team`, `completed_tasks`, `time_taken`) V
 ('7 МТП', 'ШУ-2', 1, 76),
 ('7 МТП', 'ЮУ-1', 0, 0);
 
+--
 -- --------------------------------------------------------
 
 --
@@ -1680,12 +1669,6 @@ ALTER TABLE `olympiad`
   ADD PRIMARY KEY (`short_name`),
   ADD KEY `host` (`host`);
 
---
--- Indexes for table `olympiad_ranking`
---
-ALTER TABLE `olympiad_ranking`
-  ADD PRIMARY KEY (`olympiad`,`university`,`place`),
-  ADD KEY `university` (`university`);
 
 --
 -- Indexes for table `participate`
@@ -1757,12 +1740,6 @@ ALTER TABLE `person`
 ALTER TABLE `olympiad`
   ADD CONSTRAINT `olympiad_ibfk_1` FOREIGN KEY (`host`) REFERENCES `university` (`short_form`);
 
---
--- Constraints for table `olympiad_ranking`
---
-ALTER TABLE `olympiad_ranking`
-  ADD CONSTRAINT `olympiad_ranking_ibfk_1` FOREIGN KEY (`olympiad`) REFERENCES `olympiad` (`short_name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `olympiad_ranking_ibfk_2` FOREIGN KEY (`university`) REFERENCES `university` (`short_form`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `participate`
