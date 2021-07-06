@@ -90,10 +90,14 @@ class Home extends BaseController
         $olympiad_num = array();
         preg_match("/\d+/", $id, $olympiad_num);
 
-        $tasks = scandir("tasks/$olympiad_num[0]");
-        $path_tasks = array();
-        for ($key = 2; $key < count($tasks); ++$key) {
-            $path_tasks[$key] = "../tasks/$olympiad_num[0]/$tasks[$key]";
+        try{
+            $path_tasks = array();
+            $tasks = scandir("tasks/$olympiad_num[0]");
+            for ($key = 2; $key < count($tasks); ++$key) {
+                $path_tasks[$key] = "../tasks/$olympiad_num[0]/$tasks[$key]";
+            }
+        }catch (\Exception $e) {
+                    $tasks = null;
         }
 
         $data = [
